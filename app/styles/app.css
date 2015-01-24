@@ -25,6 +25,11 @@
     background-color: yellow;
 }
 
+#chart {
+    height: 75%;
+    width: 100%;
+}
+
 button.chit {
 
 }

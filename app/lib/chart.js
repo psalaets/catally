@@ -10,12 +10,25 @@ module.exports = {
 };
 
 // based off of http://bl.ocks.org/mbostock/3885304
-var margin = {top: 20, right: 20, bottom: 30, left: 40},
+var margin = {top: 20, right: 20, bottom: 30, left: 20},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom,
     x, y, xAxis, svg;
 
+
+function setSize(containerSelector) {
+  width = parseInt(d3.select(containerSelector).style('width'), 10) - margin.left - margin.right;
+  height = parseInt(d3.select(containerSelector).style('height'), 10) - margin.top - margin.bottom;
+}
+
+function resize() {
+  x.rangeRoundBands([0, width], .1);
+  y.range([height, 0]);
+}
+
 function createChart(selector, data) {
+  setSize(selector);
+
   x = d3.scale.ordinal()
       .domain(data.map(function(d) { return d.number; }))
       .rangeRoundBands([0, width], .1);
@@ -28,7 +41,7 @@ function createChart(selector, data) {
       .scale(x)
       .orient("bottom");
 
-  svg = d3.select(selector).append("svg")
+  svg = d3.select(selector).append('svg')
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
     .append("g")
