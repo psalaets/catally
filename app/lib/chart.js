@@ -63,9 +63,11 @@ function createChart(selector, data) {
       }
     })
     .attr('x', function(d) {
+      // middle-ish of bar
       return x(d.number) + x.rangeBand() / 2;
     })
     .attr('y', function(d) {
+      // slightly above bar
       return y(d.percent) - 5;
     })
     .attr("font-family", "sans-serif")
