@@ -18,6 +18,7 @@
   "homepage": "https://github.com/staticshowdown/ss15-catally",
   "devDependencies": {
     "browserify": "^8.1.1",
+    "del": "^1.1.1",
     "gulp": "^3.8.10",
     "vinyl-source-stream": "^1.0.0",
     "watchify": "^2.2.1"
