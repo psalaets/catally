@@ -21,6 +21,8 @@ gulp.task('watch', ['watchify'], function(cb) {
     gulp.watch([
       // refresh when bundle changes
       'app/build/bundle.js',
+      // refresh when any css changes
+      'app/styles/*.css',
       // refresh when html changes
       'app/index.html'
     ], {}, browserSync.reload);
