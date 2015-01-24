@@ -22,7 +22,7 @@ function createChart(selector, data) {
       .rangeRoundBands([0, width], .1);
 
   y = d3.scale.linear()
-      .domain([0, d3.max(data, function(d) { return d.actual; }) || 20])
+      .domain([0, d3.max(data, function(d) { return d.percent; }) || 20])
       .range([height, 0]);
 
   xAxis = d3.svg.axis()
@@ -47,8 +47,8 @@ function createChart(selector, data) {
       .attr("fill", "#0f0")
       .attr("x", function(d) { return x(d.number); })
       .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.actual); })
-      .attr("height", function(d) { return height - y(d.actual); });
+      .attr("y", function(d) { return y(d.percent); })
+      .attr("height", function(d) { return height - y(d.percent); });
 
   // labels
   svg.selectAll('text.label')
@@ -66,7 +66,7 @@ function createChart(selector, data) {
       return x(d.number) + x.rangeBand() / 2;
     })
     .attr('y', function(d) {
-      return y(d.actual) - 5;
+      return y(d.percent) - 5;
     })
     .attr("font-family", "sans-serif")
     .attr("font-size", "14px")
@@ -79,15 +79,15 @@ function updateChart(data) {
     .data(data)
     .transition()
     .duration(500)
-    .ease('elastic')
-    .attr("y", function(d) { return y(d.actual); })
-    .attr("height", function(d) { return height - y(d.actual); });
+    .ease('circle')
+    .attr("y", function(d) { return y(d.percent); })
+    .attr("height", function(d) { return height - y(d.percent); });
 
   svg.selectAll('text.label')
     .data(data)
     .transition()
     .duration(500)
-    .ease('elastic')
+    .ease('circle')
     .text(function(d) {
       // only show label for non-zero counts
       if (d.actual) {
@@ -98,6 +98,6 @@ function updateChart(data) {
       return x(d.number) + x.rangeBand() / 2;
     })
     .attr('y', function(d) {
-      return y(d.actual) - 5;
+      return y(d.percent) - 5;
     })
 }
