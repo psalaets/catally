@@ -53,3 +53,12 @@ gulp.task('watch', ['watchify'], function(cb) {
 gulp.task('clean', function(cb) {
   del(['app/build'], cb);
 });
+
+gulp.task('default', function() {
+  console.log();
+  console.log('Tasks:');
+  console.log();
+  console.log('  watch - Serve app locally with auto-reload');
+  console.log('  clean - Delete generated files');
+  console.log();
+});
