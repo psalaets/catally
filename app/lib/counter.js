@@ -50,10 +50,13 @@ Object.defineProperty(p, 'chartData', {
     var chartData = [];
 
     for (var key in this.counts) {
+      // prevent divide by 0
+      var percent = total ? (this.counts[key] / total) * 100 : 0;
+
       chartData.push({
         number: key,
         actual: this.counts[key],
-        percent: (this.counts[key] / total) * 100
+        percent: percent
       });
     }
 
