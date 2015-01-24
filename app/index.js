@@ -1,4 +1,5 @@
 require('./lib/bind-chits');
+require('./lib/bind-dice');
 
 var counter = require('./lib/counter');
 var chart = require('./lib/chart');
