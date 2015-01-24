@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "d3": "^3.5.3",
+    "debounce": "^1.0.0",
     "normalize.css": "^3.0.2"
   }
 }

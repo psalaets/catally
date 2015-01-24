@@ -1,11 +1,19 @@
 var d3 = require('d3');
 
+var lastData;
+
 module.exports = {
   init: function(selector, data) {
     createChart(selector, data);
+    lastData = data;
   },
   update: function(data) {
     updateChart(data);
+    lastData = data;
+  },
+  resize: function(containerSelector) {
+    setSize(containerSelector);
+    resize();
   }
 };
 
@@ -19,11 +27,32 @@ var margin = {top: 20, right: 20, bottom: 30, left: 20},
 function setSize(containerSelector) {
   width = parseInt(d3.select(containerSelector).style('width'), 10) - margin.left - margin.right;
   height = parseInt(d3.select(containerSelector).style('height'), 10) - margin.top - margin.bottom;
+
+  console.log('setSize: width is now ' + width + ' and height is now ' + height)
 }
 
 function resize() {
   x.rangeRoundBands([0, width], .1);
+  xAxis.scale(x).orient("bottom");
+
   y.range([height, 0]);
+
+  svg.select('.x.axis')
+    .attr('transform', function() {
+      return "translate(0," + height + ")";
+    })
+    //.attr("transform", "translate(0," + height + ")")
+    .call(xAxis);
+
+  svg.attr('width', function() {
+      return width + margin.left + margin.right;
+    })
+    //.attr("width", width + margin.left + margin.right)
+    .attr('height', function() {
+      return height + margin.top + margin.bottom;
+    })
+
+  updateChart(lastData);
 }
 
 function createChart(selector, data) {
@@ -42,14 +71,23 @@ function createChart(selector, data) {
       .orient("bottom");
 
   svg = d3.select(selector).append('svg')
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
+      .attr('width', function() {
+        return width + margin.left + margin.right;
+      })
+      //.attr("width", width + margin.left + margin.right)
+      .attr('height', function() {
+        return height + margin.top + margin.bottom;
+      })
+      //.attr("height", height + margin.top + margin.bottom)
     .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
   svg.append("g")
       .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
+      .attr('transform', function() {
+        return "translate(0," + height + ")";
+      })
+      //.attr("transform", "translate(0," + height + ")")
       .call(xAxis);
 
   svg.selectAll(".bar")
@@ -99,7 +137,9 @@ function updateChart(data) {
     .duration(500)
     .ease('circle')
     .attr("y", function(d) { return y(d.percent); })
-    .attr("height", function(d) { return height - y(d.percent); });
+    .attr("height", function(d) { return height - y(d.percent); })
+    .attr("x", function(d) { return x(d.number); })
+    .attr("width", x.rangeBand());
 
   // adjust labels to stay with bars
   svg.selectAll('text.label')
