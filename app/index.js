@@ -1,1 +1,2 @@
-console.log('test!!!!')
+require('./lib/bind-chits');
+
