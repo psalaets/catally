@@ -21,7 +21,7 @@ module.exports = {
 var margin = {top: 20, right: 20, bottom: 30, left: 20},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom,
-    x, y, xAxis, svg;
+    x, y, xAxis, chart, svg;
 
 
 function setSize(containerSelector) {
@@ -37,7 +37,7 @@ function resize() {
 
   y.range([height, 0]);
 
-  svg.select('.x.axis')
+  chart.select('.x.axis')
     .attr('transform', function() {
       return "translate(0," + height + ")";
     })
@@ -79,10 +79,11 @@ function createChart(selector, data) {
         return height + margin.top + margin.bottom;
       })
       //.attr("height", height + margin.top + margin.bottom)
-    .append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  svg.append("g")
+  chart = svg.append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  chart.append("g")
       .attr("class", "x axis")
       .attr('transform', function() {
         return "translate(0," + height + ")";
@@ -90,7 +91,7 @@ function createChart(selector, data) {
       //.attr("transform", "translate(0," + height + ")")
       .call(xAxis);
 
-  svg.selectAll(".bar")
+  chart.selectAll(".bar")
       .data(data)
     .enter().append("rect")
       .attr("class", "bar")
@@ -101,7 +102,7 @@ function createChart(selector, data) {
       .attr("height", function(d) { return height - y(d.percent); });
 
   // labels
-  svg.selectAll('text.label')
+  chart.selectAll('text.label')
     .data(data)
     .enter()
     .append('text')
@@ -131,7 +132,7 @@ function updateChart(data) {
   y.domain([0, d3.max(data, function(d) { return d.percent; })])
 
   // adjust bar
-  svg.selectAll(".bar")
+  chart.selectAll(".bar")
     .data(data)
     .transition()
     .duration(500)
@@ -142,7 +143,7 @@ function updateChart(data) {
     .attr("width", x.rangeBand());
 
   // adjust labels to stay with bars
-  svg.selectAll('text.label')
+  chart.selectAll('text.label')
     .data(data)
     .transition()
     .duration(500)
