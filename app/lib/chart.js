@@ -20,7 +20,7 @@ module.exports = {
 
 // based off of http://bl.ocks.org/mbostock/3885304
 var margin = {top: 20, right: 20, bottom: 30, left: 20},
-    x, y, xAxis, chart, svg;
+    xScale, yScale, xAxis, chart, svg;
 
 function setSize(containerSelector) {
   width = parseInt(d3.select(containerSelector).style('width'), 10) - margin.left - margin.right;
@@ -28,10 +28,10 @@ function setSize(containerSelector) {
 }
 
 function resize() {
-  x.rangeRoundBands([0, width], .1);
-  xAxis.scale(x).orient("bottom");
+  xScale.rangeRoundBands([0, width], .1);
+  xAxis.scale(xScale).orient("bottom");
 
-  y.range([height, 0]);
+  yScale.range([height, 0]);
 
   chart.select('.x.axis')
     .attr("transform", "translate(0," + height + ")")
@@ -46,16 +46,16 @@ function resize() {
 function createChart(selector, data) {
   setSize(selector);
 
-  x = d3.scale.ordinal()
+  xScale = d3.scale.ordinal()
       .domain(data.map(function(d) { return d.number; }))
       .rangeRoundBands([0, width], .1);
 
-  y = d3.scale.linear()
+  yScale = d3.scale.linear()
       .domain([0, d3.max(data, function(d) { return d.percent; })])
       .range([height, 0]);
 
   xAxis = d3.svg.axis()
-      .scale(x)
+      .scale(xScale)
       .orient("bottom");
 
   svg = d3.select(selector).append('svg')
@@ -75,10 +75,10 @@ function createChart(selector, data) {
     .enter().append("rect")
       .attr("class", "bar")
       .attr("fill", "#0f0")
-      .attr("x", function(d) { return x(d.number); })
-      .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.percent); })
-      .attr("height", function(d) { return height - y(d.percent); });
+      .attr("x", function(d) { return xScale(d.number); })
+      .attr("width", xScale.rangeBand())
+      .attr("y", function(d) { return yScale(d.percent); })
+      .attr("height", function(d) { return height - yScale(d.percent); });
 
   // labels
   chart.selectAll('text.label')
@@ -94,11 +94,11 @@ function createChart(selector, data) {
     })
     .attr('x', function(d) {
       // middle-ish of bar
-      return x(d.number) + x.rangeBand() / 2;
+      return xScale(d.number) + xScale.rangeBand() / 2;
     })
     .attr('y', function(d) {
       // slightly above bar
-      return y(d.percent) - 5;
+      return yScale(d.percent) - 5;
     })
     .attr("font-family", "sans-serif")
     .attr("font-size", "14px")
@@ -107,26 +107,29 @@ function createChart(selector, data) {
 }
 
 function updateChart(data) {
+  var transitionMillis = 300;
+  var transitionEase = 'circle';
+
   // adjust y scale so max is always at top
-  y.domain([0, d3.max(data, function(d) { return d.percent; })])
+  yScale.domain([0, d3.max(data, function(d) { return d.percent; })])
 
   // adjust bar
   chart.selectAll(".bar")
     .data(data)
     .transition()
-    .duration(500)
-    .ease('circle')
-    .attr("y", function(d) { return y(d.percent); })
-    .attr("height", function(d) { return height - y(d.percent); })
-    .attr("x", function(d) { return x(d.number); })
-    .attr("width", x.rangeBand());
+    .duration(transitionMillis)
+    .ease(transitionEase)
+    .attr("y", function(d) { return yScale(d.percent); })
+    .attr("height", function(d) { return height - yScale(d.percent); })
+    .attr("x", function(d) { return xScale(d.number); })
+    .attr("width", xScale.rangeBand());
 
   // adjust labels to stay with bars
   chart.selectAll('text.label')
     .data(data)
     .transition()
-    .duration(500)
-    .ease('circle')
+    .duration(transitionMillis)
+    .ease(transitionEase)
     .text(function(d) {
       // only show label for non-zero counts
       if (d.actual) {
@@ -134,9 +137,9 @@ function updateChart(data) {
       }
     })
     .attr('x', function(d) {
-      return x(d.number) + x.rangeBand() / 2;
+      return xScale(d.number) + xScale.rangeBand() / 2;
     })
     .attr('y', function(d) {
-      return y(d.percent) - 5;
+      return yScale(d.percent) - 5;
     })
 }
