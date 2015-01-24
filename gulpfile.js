@@ -3,7 +3,7 @@ var browserify = require('browserify');
 var watchify = require('watchify');
 var source = require('vinyl-source-stream');
 var del = require('del');
-
+var browserSync = require('browser-sync');
 
 gulp.task('watchify', ['clean'], function() {
   var bundler = browserify({
@@ -28,6 +28,26 @@ gulp.task('watchify', ['clean'], function() {
   }
 
   return rebundle();
+});
+
+gulp.task('watch', ['watchify'], function(cb) {
+  browserSync({
+    server: {
+      baseDir: 'app/'
+    },
+    // do not mirror clicks/scroll/form interaction across browsers
+    ghostMode: false
+  }, function serverUp() {
+    gulp.watch([
+      // refresh when bundle changes
+      'app/build/bundle.js',
+      // refresh when html changes
+      'app/index.html'
+    ], {}, browserSync.reload);
+
+    // tell gulp this task is done
+    cb();
+  });
 });
 
 gulp.task('clean', function(cb) {
