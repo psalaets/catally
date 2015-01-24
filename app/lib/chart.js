@@ -82,4 +82,22 @@ function updateChart(data) {
     .ease('elastic')
     .attr("y", function(d) { return y(d.actual); })
     .attr("height", function(d) { return height - y(d.actual); });
+
+  svg.selectAll('text.label')
+    .data(data)
+    .transition()
+    .duration(500)
+    .ease('elastic')
+    .text(function(d) {
+      // only show label for non-zero counts
+      if (d.actual) {
+        return d.actual;
+      }
+    })
+    .attr('x', function(d) {
+      return x(d.number) + x.rangeBand() / 2;
+    })
+    .attr('y', function(d) {
+      return y(d.actual) - 5;
+    })
 }
