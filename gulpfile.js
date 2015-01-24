@@ -9,11 +9,18 @@ var uglify      = require('gulp-uglify');
 var rev         = require('gulp-rev');
 var inject      = require('gulp-inject');
 var minifyCss   = require('gulp-minify-css');
+var useref      = require('gulp-useref');
+var filter      = require('gulp-filter');
+var filelog     = require('gulp-filelog');
 
 gulp.task('watch', ['watchify'], function(cb) {
   browserSync({
     server: {
-      baseDir: 'app/'
+      baseDir: [
+        'app',
+        // root dir is also a base dir to find stuff in node_modules
+        '.'
+      ]
     },
     // do not mirror clicks/scroll/form interaction across browsers
     ghostMode: false
@@ -70,7 +77,13 @@ gulp.task('browserify', ['clean'], function() {
 });
 
 gulp.task('build-styles', ['clean'], function() {
-  return gulp.src('app/styles/app.css')
+  return gulp.src('app/index.html')
+    .pipe(useref.assets({
+      // search app like usual but
+      // also search root dir to find stuff in node_modules
+      searchPath: ['app', '.']
+    }))
+    .pipe(filter('*.css'))
     .pipe(minifyCss())
     .pipe(rev())
     .pipe(gulp.dest('build/styles'));
