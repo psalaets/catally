@@ -1,5 +1,7 @@
 require('./lib/bind-chits');
 
+
+var counter = require('./lib/counter');
 var d3 = require('d3');
 
 // based off of http://bl.ocks.org/mbostock/3885304
@@ -23,9 +25,11 @@ var margin = {top: 20, right: 20, bottom: 30, left: 40},
     height = 500 - margin.top - margin.bottom;
 
 var x = d3.scale.ordinal()
+    .domain(data.map(function(d) { return d.number; }))
     .rangeRoundBands([0, width], .1);
 
 var y = d3.scale.linear()
+    .domain([0, d3.max(data, function(d) { return d.actual; })])
     .range([height, 0]);
 
 var xAxis = d3.svg.axis()
@@ -38,19 +42,33 @@ var svg = d3.select("#chart").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    x.domain(data.map(function(d) { return d.number; }));
-      y.domain([0, d3.max(data, function(d) { return d.actual; })]);
 
-      svg.append("g")
-          .attr("class", "x axis")
-          .attr("transform", "translate(0," + height + ")")
-          .call(xAxis);
+svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis);
 
-      svg.selectAll(".bar")
-          .data(data)
-        .enter().append("rect")
-          .attr("class", "bar")
-          .attr("x", function(d) { return x(d.number); })
-          .attr("width", x.rangeBand())
-          .attr("y", function(d) { return y(d.actual); })
-          .attr("height", function(d) { return height - y(d.actual); });
+svg.selectAll(".bar")
+    .data(data)
+  .enter().append("rect")
+    .attr("class", "bar")
+    .attr("fill", "#00f")
+    .attr("x", function(d) { return x(d.number); })
+    .attr("width", x.rangeBand())
+    .attr("y", function(d) { return y(d.actual); })
+    .attr("height", function(d) { return height - y(d.actual); });
+
+
+counter.on('change:single', function(number) {
+  console.log('number changed: ' + number)
+
+  var chartData = counter.chartData;
+
+  svg.selectAll(".bar")
+    .data(chartData)
+    .transition()
+    .duration(500)
+    .ease('elastic')
+    .attr("y", function(d) { return y(d.actual); })
+    .attr("height", function(d) { return height - y(d.actual); });
+});

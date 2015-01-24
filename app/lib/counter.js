@@ -42,3 +42,21 @@ Object.defineProperty(p, 'total', {
     return total;
   }
 });
+
+Object.defineProperty(p, 'chartData', {
+  get: function() {
+    var total = this.total;
+
+    var chartData = [];
+
+    for (var key in this.counts) {
+      chartData.push({
+        number: key,
+        actual: this.counts[key],
+        percent: (this.counts[key] / total) * 100
+      });
+    }
+
+    return chartData;
+  }
+});
