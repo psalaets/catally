@@ -10,7 +10,6 @@ module.exports = {
 };
 
 // based off of http://bl.ocks.org/mbostock/3885304
-
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom,
@@ -22,7 +21,7 @@ function createChart(selector, data) {
       .rangeRoundBands([0, width], .1);
 
   y = d3.scale.linear()
-      .domain([0, d3.max(data, function(d) { return d.percent; }) || 20])
+      .domain([0, d3.max(data, function(d) { return d.percent; })])
       .range([height, 0]);
 
   xAxis = d3.svg.axis()
@@ -77,6 +76,10 @@ function createChart(selector, data) {
 }
 
 function updateChart(data) {
+  // adjust y scale so max is always at top
+  y.domain([0, d3.max(data, function(d) { return d.percent; })])
+
+  // adjust bar
   svg.selectAll(".bar")
     .data(data)
     .transition()
@@ -85,6 +88,7 @@ function updateChart(data) {
     .attr("y", function(d) { return y(d.percent); })
     .attr("height", function(d) { return height - y(d.percent); });
 
+  // adjust labels to stay with bars
   svg.selectAll('text.label')
     .data(data)
     .transition()
