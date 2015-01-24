@@ -1,7 +1,7 @@
 node_modules
 
 build
-app/bower_components
+.divshot-cache
 
 *.sublime-project
 *.sublime-workspace
