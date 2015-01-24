@@ -8,6 +8,7 @@ var browserSync = require('browser-sync');
 var uglify = require('gulp-uglify');
 var rev = require('gulp-rev');
 var inject = require('gulp-inject');
+var minifyCss = require('gulp-minify-css');
 
 // options.dev = true will...
 //   - activate watchify
@@ -78,11 +79,23 @@ gulp.task('build-scripts', ['browserify'], function() {
     .pipe(gulp.dest('build/scripts'));
 });
 
-gulp.task('build-html', ['build-scripts'], function() {
-  var bundleFile = gulp.src('build/scripts/bundle-*.js', {read:false});
+gulp.task('build-styles', ['clean'], function() {
+  return gulp.src('app/styles/app.css')
+    .pipe(minifyCss())
+    .pipe(rev())
+    .pipe(gulp.dest('build/styles'));
+});
+
+gulp.task('build-html', ['build-scripts', 'build-styles'], function() {
+  var bundleJs = gulp.src('build/scripts/bundle-*.js', {read:false});
+  var appCss = gulp.src('build/styles/app-*.css', {read:false});
 
   return gulp.src('app/index.html')
-    .pipe(inject(bundleFile, {
+    .pipe(inject(bundleJs, {
+      ignorePath: 'build/',
+      addRootSlash: false
+    }))
+    .pipe(inject(appCss, {
       ignorePath: 'build/',
       addRootSlash: false
     }))
