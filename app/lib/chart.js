@@ -44,11 +44,34 @@ function createChart(selector, data) {
       .data(data)
     .enter().append("rect")
       .attr("class", "bar")
-      .attr("fill", "#00f")
+      .attr("fill", "#0f0")
       .attr("x", function(d) { return x(d.number); })
       .attr("width", x.rangeBand())
       .attr("y", function(d) { return y(d.actual); })
       .attr("height", function(d) { return height - y(d.actual); });
+
+  // labels
+  svg.selectAll('text.label')
+    .data(data)
+    .enter()
+    .append('text')
+    .attr('class', 'label')
+    .text(function(d) {
+      // only show label for non-zero counts
+      if (d.actual) {
+        return d.actual;
+      }
+    })
+    .attr('x', function(d) {
+      return x(d.number) + x.rangeBand() / 2;
+    })
+    .attr('y', function(d) {
+      return y(d.actual) - 5;
+    })
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "14px")
+    .attr('text-anchor', 'middle')
+    .attr("fill", "black")
 }
 
 function updateChart(data) {
