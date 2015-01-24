@@ -1,5 +1,6 @@
 var d3 = require('d3');
 
+// hack: hold on to last data array for refreshing d3 on a resize
 var lastData;
 
 module.exports = {
@@ -19,16 +20,11 @@ module.exports = {
 
 // based off of http://bl.ocks.org/mbostock/3885304
 var margin = {top: 20, right: 20, bottom: 30, left: 20},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom,
     x, y, xAxis, chart, svg;
-
 
 function setSize(containerSelector) {
   width = parseInt(d3.select(containerSelector).style('width'), 10) - margin.left - margin.right;
   height = parseInt(d3.select(containerSelector).style('height'), 10) - margin.top - margin.bottom;
-
-  console.log('setSize: width is now ' + width + ' and height is now ' + height)
 }
 
 function resize() {
@@ -38,19 +34,11 @@ function resize() {
   y.range([height, 0]);
 
   chart.select('.x.axis')
-    .attr('transform', function() {
-      return "translate(0," + height + ")";
-    })
-    //.attr("transform", "translate(0," + height + ")")
+    .attr("transform", "translate(0," + height + ")")
     .call(xAxis);
 
-  svg.attr('width', function() {
-      return width + margin.left + margin.right;
-    })
-    //.attr("width", width + margin.left + margin.right)
-    .attr('height', function() {
-      return height + margin.top + margin.bottom;
-    })
+  svg.attr("width", width + margin.left + margin.right)
+    .attr('height', height + margin.top + margin.bottom);
 
   updateChart(lastData);
 }
@@ -71,24 +59,15 @@ function createChart(selector, data) {
       .orient("bottom");
 
   svg = d3.select(selector).append('svg')
-      .attr('width', function() {
-        return width + margin.left + margin.right;
-      })
-      //.attr("width", width + margin.left + margin.right)
-      .attr('height', function() {
-        return height + margin.top + margin.bottom;
-      })
-      //.attr("height", height + margin.top + margin.bottom)
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
 
   chart = svg.append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
   chart.append("g")
       .attr("class", "x axis")
-      .attr('transform', function() {
-        return "translate(0," + height + ")";
-      })
-      //.attr("transform", "translate(0," + height + ")")
+      .attr("transform", "translate(0," + height + ")")
       .call(xAxis);
 
   chart.selectAll(".bar")
