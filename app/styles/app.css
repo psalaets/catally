@@ -61,16 +61,22 @@
 .chit {
     margin: 0 5px;
 
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
+    font-family: Garamond, serif;
+
+    width: 38px;
+    height: 38px;
+    border-radius: 19px;
+    border: 0px;
 
     text-align: center;
 
     background: #dcdcc6;
 
     overflow: hidden;
-    box-shadow: 0 0 3px gray;
+}
+
+.chit.likely {
+    color: #f00;
 }
 
 .hidden {
