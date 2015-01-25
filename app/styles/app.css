@@ -75,6 +75,29 @@
     position: absolute;
     width: 100%;
     height: 25%;
+    text-align: center;
+}
+
+#roll-button {
+    padding: 10px 70px;
+    background: #f4d023;
+    color: #000;
+    font-size: 1.5em;
+    font-family: 'Crimson Text', serif;
+    border: 0;
+}
+
+#roll-wrapper {
+    /* begin vertical centering */
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    /* end vertical centering */
+}
+
+#roll-result {
+    font-family: 'Crimson Text', serif;
+    font-size: 3em;
 }
 
 #chits {
