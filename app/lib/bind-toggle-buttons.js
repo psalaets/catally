@@ -8,15 +8,19 @@ forEach.call(toggleButtons, function(button) {
     var showId = button.dataset.show;
     var hideId = button.dataset.hide;
 
-    // show chits or dice
-    var showThis = document.getElementById(showId);
-    var hideThis = document.getElementById(hideId);
+    if (!button.classList.contains('pressed')) {
+      console.log('pressing')
 
-    swap(hideThis, showThis);
+      // show chits or dice
+      var showThis = document.getElementById(showId);
+      var hideThis = document.getElementById(hideId);
 
-    // make button look pressed
-    unpressAll(toggleButtons);
-    button.classList.add('pressed');
+      swap(hideThis, showThis);
+
+      // make button look pressed
+      unpressAll(toggleButtons);
+      button.classList.add('pressed');
+    }
   });
 });
 
