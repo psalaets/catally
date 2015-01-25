@@ -1,5 +1,6 @@
 var counter = require('./counter');
 var diceTumble = require('./dice-tumble');
+var wobble = require('./wobble');
 
 // KeyboardEvent#keyCode -> roll
 var rollsByKeyCode = {
@@ -27,8 +28,10 @@ window.addEventListener('keydown', function(event) {
 
   // equivalent to clicking a chit
   if (event.keyCode in rollsByKeyCode) {
-    counter.increment(rollsByKeyCode[event.keyCode]);
     event.preventDefault();
+
+    counter.increment(rollsByKeyCode[event.keyCode]);
+    wobbleChitByNumber(rollsByKeyCode[event.keyCode]);
   }
 
   // equivalent to rolling dice
@@ -37,3 +40,11 @@ window.addEventListener('keydown', function(event) {
   }
 });
 
+function wobbleChitByNumber(number) {
+  var chits = document.querySelectorAll(".chit[data-number='" + number +"']");
+
+  // wobble all chits returned because there are hidden ones and we don't bother to check
+  Array.prototype.forEach.call(chits, function(chit) {
+    wobble(chit);
+  });
+}
