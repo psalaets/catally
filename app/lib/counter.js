@@ -24,10 +24,9 @@ p.increment = function increment(number) {
 };
 
 p.clear = function clear() {
-  for (var key in this.counts) {
-    this.counts[key] = 0;
-  }
-  this.emit('change');
+  return storage.reset().then(function() {
+    this.emit('change');
+  });
 };
 
 Object.defineProperty(p, 'total', {
