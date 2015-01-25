@@ -1,9 +1,10 @@
-var debounce = require('debounce');
-
+require('./lib/init-fastclick');
 require('./lib/bind-chits');
 require('./lib/bind-dice');
 require('./lib/bind-toggle-buttons');
 require('./lib/bind-reset-button');
+
+var debounce = require('debounce');
 
 var counter = require('./lib/counter');
 var chart = require('./lib/chart');
