@@ -9,8 +9,6 @@ forEach.call(toggleButtons, function(button) {
     var hideId = button.dataset.hide;
 
     if (!button.classList.contains('pressed')) {
-      console.log('pressing')
-
       // show chits or dice
       var showThis = document.getElementById(showId);
       var hideThis = document.getElementById(hideId);
