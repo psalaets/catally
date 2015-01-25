@@ -14,13 +14,6 @@ var resizeChart = debounce(function() {
 window.addEventListener('resize', resizeChart);
 window.addEventListener('orientationchange', resizeChart);
 
-
-counter.increment(4)
-counter.increment(4)
-counter.increment(6)
-counter.increment(7)
-counter.increment(7)
-
 counter.chartData.then(function(data) {
   chart.init('#chart', data);
 });
