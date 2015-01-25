@@ -10,7 +10,6 @@ function swap(hideThis, showThis) {
   snabbt(showThis, {
     // rotate showThis one by 1/4 to get it ready
     rotation: [0, Math.PI / 2, 0],
-    easing: 'ease',
     duration: instant,
     callback: function() {
       // show showThis
@@ -35,7 +34,6 @@ function swap(hideThis, showThis) {
       }).then(hideThis, {
         // rotate hideThis back 1/4 so it's ready for next time
         rotationFrom: [0, Math.PI / 2, 0],
-        easing: 'ease',
         duration: instant
       });
     }
