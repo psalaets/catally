@@ -37,6 +37,6 @@
     "fastclick": "1.0.5",
     "localforage": "1.2.1",
     "normalize.css": "3.0.2",
-    "snabbt.js": "^0.3.0"
+    "snabbt.js": "0.3.0"
   }
 }
