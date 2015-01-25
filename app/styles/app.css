@@ -29,6 +29,11 @@
 
 }
 
+#bottom-bar button.pressed {
+    /* make better someday */
+    border: solid red 1px;
+}
+
 #chart {
     height: 75%;
     width: 100%;
