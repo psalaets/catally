@@ -63,6 +63,7 @@ body {
     border: 0;
     color: #000;
     font-family: 'Crimson Text', serif;
+    padding: 0 15px;
 }
 
 .toolbar-button.pressed {
