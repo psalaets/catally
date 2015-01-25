@@ -6,15 +6,17 @@ A fun way to roll dice for [Settlers of Catan](http://en.wikipedia.org/wiki/The_
 
 Catally can be used in two ways.
 
-### Using physical dice
+### 1. Using Catally for dice
+
+Click the "Dice" button at the bottom left to switch to dice mode. Click the "Roll" button to roll the dice.
+
+### 2. Using physical dice
 
 If you want to roll the real Catan dice, Catally can graph the dice rolls.
 
-Click the "Chits" button at the bottom left to switch to chits mode. Every time someone rolls the dice, click the corresponding chit in Catally.
+Click the "Chits" button at the bottom left to switch to chits mode. Every time the dice are rolled, click the corresponding chit in Catally.
 
-### Using Catally for dice
-
-Click the "Dice" button at the bottom left to switch to dice mode. Click the "Roll" button to roll the dice.
+## Other stuff
 
 ### Resetting roll counts
 

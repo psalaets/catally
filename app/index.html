@@ -21,7 +21,7 @@
     <div id="main">
         <div id="chart"></div>
 
-        <div id="chits">
+        <div id="chits" class="hidden">
             <div class="chit-row">
                 <button class="chit" data-number="3">3</button>
                 <button class="chit" data-number="5">5</button>
@@ -39,7 +39,7 @@
             </div>
         </div>
 
-        <div id="dice" class="hidden">
+        <div id="dice">
             <div id="roll-wrapper">
                 <button id="roll-button">Roll</button>
                 <br>
@@ -49,8 +49,8 @@
     </div>
 
     <footer id="bottom-bar">
-        <button class="toolbar-button toggle pressed" data-show="chits" data-hide="dice">Chits</button>
-        <button class="toolbar-button toggle" data-show="dice" data-hide="chits">Dice</button>
+        <button class="toolbar-button toggle pressed" data-show="dice" data-hide="chits">Dice</button>
+        <button class="toolbar-button toggle" data-show="chits" data-hide="dice">Chits</button>
         <button id="reset-button" class="toolbar-button right">Reset</button>
     </footer>
 
