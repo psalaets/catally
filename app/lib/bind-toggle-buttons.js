@@ -1,7 +1,7 @@
-var buttons = document.querySelectorAll('#bottom-bar button');
+var toggleButtons = document.querySelectorAll('#bottom-bar .toolbar-button.toggle');
 var forEach = Array.prototype.forEach;
 
-forEach.call(buttons, function(button) {
+forEach.call(toggleButtons, function(button) {
   button.addEventListener('click', function() {
     var showId = button.dataset.show;
     var hideId = button.dataset.hide;
@@ -11,7 +11,7 @@ forEach.call(buttons, function(button) {
     document.getElementById(hideId).classList.add('hidden');
 
     // make button look pressed
-    unpressAll(buttons);
+    unpressAll(toggleButtons);
     button.classList.add('pressed');
   });
 });
