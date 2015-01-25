@@ -37,10 +37,10 @@
     width: 100%;
     height: 3em;
     background-color: #ab3126;
-    padding: 0 1%;
+    padding: 0 5px;
 }
 
-#bottom-bar button {
+.toolbar-button {
     /* begin vertical centering */
     position: relative;
     top: 50%;
@@ -56,8 +56,14 @@
     font-family: 'Crimson Text', serif;
 }
 
-#bottom-bar button.pressed {
+.toolbar-button.pressed {
     background-color: #c19d00;
+}
+
+.toolbar-button.right {
+    float: right;
+    /* No idea why I need this :( */
+    margin-right: 10px;
 }
 
 #chart {
