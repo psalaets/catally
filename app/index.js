@@ -3,6 +3,7 @@ require('./lib/bind-chits');
 require('./lib/bind-roll-button');
 require('./lib/bind-toggle-buttons');
 require('./lib/bind-reset-button');
+require('./lib/keyboard-shortcuts');
 
 var debounce = require('debounce');
 
