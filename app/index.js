@@ -2,7 +2,7 @@ var debounce = require('debounce');
 
 require('./lib/bind-chits');
 require('./lib/bind-dice');
-require('./lib/bind-bottom-toolbar-buttons');
+require('./lib/bind-toggle-buttons');
 
 var counter = require('./lib/counter');
 var chart = require('./lib/chart');
