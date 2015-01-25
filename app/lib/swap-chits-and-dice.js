@@ -27,14 +27,14 @@ function swap(hideThis, showThis) {
 
           // rotate showThis back 1/4
           snabbt(showThis, {
-            rotation: [0, -Math.PI / 2, 0],
+            rotationFrom: [0, Math.PI / 2, 0],
             easing: 'ease',
             duration: fast
           });
         }
       }).then(hideThis, {
         // rotate hideThis back 1/4 so it's ready for next time
-        rotation: [0, -Math.PI / 2, 0],
+        rotationFrom: [0, Math.PI / 2, 0],
         easing: 'ease',
         duration: instant
       });
