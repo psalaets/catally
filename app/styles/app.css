@@ -11,6 +11,8 @@
     vertical-align: middle;
     text-align: center;
     line-height: 3em;
+    box-sizing: border-box;
+    border-bottom: 1px solid #222;
 }
 
 #top-bar h1 {
@@ -38,6 +40,9 @@
     height: 3em;
     background-color: #ab3126;
     padding: 0 5px;
+
+    box-sizing: border-box;
+    border-top: 1px solid #222;
 }
 
 .toolbar-button {
