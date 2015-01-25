@@ -19,7 +19,7 @@ module.exports = {
 };
 
 // based off of http://bl.ocks.org/mbostock/3885304
-var margin = {top: 20, right: 20, bottom: 30, left: 20},
+var margin = {top: 30, right: 20, bottom: 30, left: 20},
     xScale, yScale, xAxis, chart, svg;
 
 function setSize(containerSelector) {
