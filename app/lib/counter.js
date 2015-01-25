@@ -33,36 +33,40 @@ p.clear = function clear() {
 Object.defineProperty(p, 'total', {
   get: function() {
     return storage.getCounts().then(function(counts) {
-      var total = 0;
-
-      for (var key in counts) {
-        total += counts[key];
-      }
-
-      return total;
+      return sumCounts(counts );
     });
   }
 });
 
+function sumCounts(counts) {
+  var total = 0;
+
+  for (var key in counts) {
+    total += counts[key];
+  }
+
+  return total;
+}
+
 Object.defineProperty(p, 'chartData', {
   get: function() {
-    return this.total.then(function(total) {
-      return storage.getCounts().then(function(counts) {
-        var chartData = [];
+    return storage.getCounts().then(function(counts) {
+      var total = sumCounts(counts);
 
-        for (var key in counts) {
-          // prevent divide by 0
-          var percent = total ? (counts[key] / total) * 100 : 0;
+      var chartData = [];
 
-          chartData.push({
-            number: key,
-            actual: counts[key],
-            percent: percent
-          });
-        }
+      for (var key in counts) {
+        // prevent divide by 0
+        var percent = total ? (counts[key] / total) * 100 : 0;
 
-        return chartData;
-      });
+        chartData.push({
+          number: key,
+          actual: counts[key],
+          percent: percent
+        });
+      }
+
+      return chartData;
     });
   }
 });
