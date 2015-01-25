@@ -49,20 +49,14 @@ body {
     right: 0;
     height: 3em;
     background-color: #ab3126;
-    padding: 0 5px;
+    padding: 5px 5px;
 
     box-sizing: border-box;
     border-top: 1px solid #222;
 }
 
 .toolbar-button {
-    /* begin vertical centering */
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-    /* end vertical centering */
-
-    height: 80%;
+    height: 100%;
     border-radius: 0.5em;
 
     background-color: #f4d023;
