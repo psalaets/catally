@@ -21,10 +21,14 @@ counter.increment(6)
 counter.increment(7)
 counter.increment(7)
 
-chart.init('#chart', counter.chartData);
+counter.chartData.then(function(data) {
+  chart.init('#chart', data);
+});
 
 counter.on('change', function() {
   console.log('number changed')
 
-  chart.update(counter.chartData);
+  counter.chartData.then(function(data) {
+    chart.update(data);
+  });
 });

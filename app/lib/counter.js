@@ -1,6 +1,8 @@
 var util = require('util');
 var events = require('events');
 
+var storage = require('./storage');
+
 util.inherits(Counter, events.EventEmitter);
 
 module.exports = new Counter();
@@ -9,18 +11,16 @@ module.exports = new Counter();
 * Events:
 *   - change when one or more numbers change
 */
-function Counter() {
-  this.counts = {};
-  for (var i = 2; i < 13; i++) {
-    this.counts[i] = 0;
-  }
-}
+function Counter() {}
 
 var p = Counter.prototype;
 
 p.increment = function increment(number) {
-  this.counts[number] += 1;
-  this.emit('change');
+  return storage.getCounts().then(function(counts) {
+    return storage.setCount(number, counts[number] + 1);
+  }).then(function() {
+    this.emit('change');
+  }.bind(this));
 };
 
 p.clear = function clear() {
@@ -32,33 +32,37 @@ p.clear = function clear() {
 
 Object.defineProperty(p, 'total', {
   get: function() {
-    var total = 0;
+    return storage.getCounts().then(function(counts) {
+      var total = 0;
 
-    for (var key in this.counts) {
-      total += this.counts[key];
-    }
+      for (var key in counts) {
+        total += counts[key];
+      }
 
-    return total;
+      return total;
+    });
   }
 });
 
 Object.defineProperty(p, 'chartData', {
   get: function() {
-    var total = this.total;
+    return this.total.then(function(total) {
+      return storage.getCounts().then(function(counts) {
+        var chartData = [];
 
-    var chartData = [];
+        for (var key in counts) {
+          // prevent divide by 0
+          var percent = total ? (counts[key] / total) * 100 : 0;
 
-    for (var key in this.counts) {
-      // prevent divide by 0
-      var percent = total ? (this.counts[key] / total) * 100 : 0;
+          chartData.push({
+            number: key,
+            actual: counts[key],
+            percent: percent
+          });
+        }
 
-      chartData.push({
-        number: key,
-        actual: this.counts[key],
-        percent: percent
+        return chartData;
       });
-    }
-
-    return chartData;
+    });
   }
 });
