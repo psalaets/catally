@@ -3,6 +3,7 @@ var debounce = require('debounce');
 require('./lib/bind-chits');
 require('./lib/bind-dice');
 require('./lib/bind-toggle-buttons');
+require('./lib/bind-reset-button');
 
 var counter = require('./lib/counter');
 var chart = require('./lib/chart');

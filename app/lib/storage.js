@@ -19,7 +19,7 @@ var storage = {
     });
   },
   reset: function() {
-    return localforage.setItem(initialCounts());
+    return localforage.setItem(key, initialCounts());
   }
 };
 

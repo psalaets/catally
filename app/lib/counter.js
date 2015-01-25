@@ -26,7 +26,7 @@ p.increment = function increment(number) {
 p.clear = function clear() {
   return storage.reset().then(function() {
     this.emit('change');
-  });
+  }.bind(this));
 };
 
 Object.defineProperty(p, 'total', {
