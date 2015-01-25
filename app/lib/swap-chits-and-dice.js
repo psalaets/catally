@@ -5,7 +5,7 @@ module.exports = swap;
 function swap(hideThis, showThis) {
   // millis
   var instant = 1;
-  var fast = 200;
+  var fast = 100;
 
   snabbt(showThis, {
     // rotate showThis one by 1/4 to get it ready
