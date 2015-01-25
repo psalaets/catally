@@ -1,3 +1,5 @@
+var swap = require('./swap-chits-and-dice');
+
 var toggleButtons = document.querySelectorAll('#bottom-bar .toolbar-button.toggle');
 var forEach = Array.prototype.forEach;
 
@@ -7,8 +9,10 @@ forEach.call(toggleButtons, function(button) {
     var hideId = button.dataset.hide;
 
     // show chits or dice
-    document.getElementById(showId).classList.remove('hidden');
-    document.getElementById(hideId).classList.add('hidden');
+    var showThis = document.getElementById(showId);
+    var hideThis = document.getElementById(hideId);
+
+    swap(hideThis, showThis);
 
     // make button look pressed
     unpressAll(toggleButtons);
