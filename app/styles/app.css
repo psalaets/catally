@@ -1,10 +1,17 @@
 @import url(http://fonts.googleapis.com/css?family=Crimson+Text:600);
 
+body {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    height: 100vh;
+}
+
 #top-bar {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    right: 0;
     height: 3em;
 
     background-color: #ab3126;
@@ -27,16 +34,18 @@
     margin: 3em 0;
     top: 0;
     bottom: 0;
-    position: fixed;
+    left: 0;
+    right: 0;
+    position: absolute;
     background-color: white;
-    width: 100%;
+
 }
 
 #bottom-bar {
-    position: fixed;
+    position: absolute;
     bottom: 0;
     left: 0;
-    width: 100%;
+    right: 0;
     height: 3em;
     background-color: #ab3126;
     padding: 0 5px;
