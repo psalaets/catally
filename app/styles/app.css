@@ -5,7 +5,6 @@ body {
     max-width: 1000px;
     margin: 0 auto;
     height: 100vh;
-    background: #f5f5f5;
 }
 
 #top-bar {
@@ -149,4 +148,9 @@ body {
 
 .hidden {
     display: none;
+}
+
+rect.bar {
+    fill: #ab3126; /* reddish */
+    /*fill: #f4d023; /* yellowish */
 }
