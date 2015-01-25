@@ -2,7 +2,7 @@
 
 body {
     position: relative;
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
     height: 100vh;
     background: #fffff0;
@@ -114,6 +114,70 @@ body {
     width: 100%;
 }
 
+.chit-row.wide {
+    display: none;
+}
+
+@media (min-width: 600px) {
+    .chit-row.wide {
+        display: block;
+    }
+
+    .chit-row.crunched {
+        display: none;
+    }
+}
+
+@media (min-width: 800px) {
+    .chit-row.wide {
+        display: block;
+    }
+
+    .chit-row.wide .chit {
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+    }
+
+    .chit-row.crunched {
+        display: none;
+    }
+}
+
+@media (min-width: 900px) {
+    .chit-row.wide {
+        display: block;
+    }
+
+    .chit-row.wide .chit {
+        width: 64px;
+        height: 64px;
+        border-radius: 32px;
+        font-size: 24px;
+    }
+
+    .chit-row.crunched {
+        display: none;
+    }
+}
+
+@media (min-width: 1100px) {
+    .chit-row.wide {
+        display: block;
+    }
+
+    .chit-row.wide .chit {
+        width: 80px;
+        height: 80px;
+        border-radius: 40px;
+        font-size: 32px;
+    }
+
+    .chit-row.crunched {
+        display: none;
+    }
+}
+
 .chit {
     margin: 0 5px;
 
@@ -143,3 +207,4 @@ rect.bar {
     fill: #ab3126; /* reddish */
     /*fill: #f4d023; /* yellowish */
 }
+
