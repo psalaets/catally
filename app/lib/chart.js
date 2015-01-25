@@ -74,8 +74,8 @@ function createChart(selector, data) {
       .data(data)
     .enter().append("rect")
       .attr("class", "bar")
-      //.attr("fill", "#ab3126") // reddish
-      .attr("fill", "#f4d023")   // yellowish
+      .attr("fill", "#ab3126") // reddish
+      //.attr("fill", "#f4d023")   // yellowish
       .attr("x", function(d) { return xScale(d.number); })
       .attr("width", xScale.rangeBand())
       .attr("y", function(d) { return yScale(d.percent); })
