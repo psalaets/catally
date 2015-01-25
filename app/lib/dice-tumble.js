@@ -1,5 +1,5 @@
 var counter = require('./counter');
-var roll = require('./dice');
+var roll = require('./dice-roll');
 
 module.exports = diceTumble;
 
