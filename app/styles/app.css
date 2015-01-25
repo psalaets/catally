@@ -67,8 +67,6 @@
 
 .toolbar-button.right {
     float: right;
-    /* No idea why I need this :( */
-    margin-right: 10px;
 }
 
 #chart {
