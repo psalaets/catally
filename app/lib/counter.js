@@ -7,8 +7,7 @@ module.exports = new Counter();
 
 /**
 * Events:
-*   - change:single when one number changes
-*   - change:multiple  when more than one number changes
+*   - change when one or more numbers change
 */
 function Counter() {
   this.counts = {};
@@ -21,14 +20,14 @@ var p = Counter.prototype;
 
 p.increment = function increment(number) {
   this.counts[number] += 1;
-  this.emit('change:single', number);
+  this.emit('change');
 };
 
 p.clear = function clear() {
   for (var key in this.counts) {
     this.counts[key] = 0;
   }
-  this.emit('change:multiple', Object.keys(this.counts));
+  this.emit('change');
 };
 
 Object.defineProperty(p, 'total', {

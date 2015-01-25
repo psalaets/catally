@@ -22,8 +22,8 @@ counter.increment(7)
 
 chart.init('#chart', counter.chartData);
 
-counter.on('change:single', function(number) {
-  console.log('number changed: ' + number)
+counter.on('change', function() {
+  console.log('number changed')
 
   chart.update(counter.chartData);
 });
