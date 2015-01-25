@@ -20,8 +20,6 @@ counter.chartData.then(function(data) {
 });
 
 counter.on('change', function() {
-  console.log('number changed')
-
   counter.chartData.then(function(data) {
     chart.update(data);
   });
