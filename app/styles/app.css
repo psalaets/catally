@@ -183,7 +183,7 @@ body {
     display: inline-block;
 }
 
-@media (min-height: 500px) {
+@media (min-height: 479px) {
     #roll-button-wrapper {
         display: block;
     }
