@@ -25,11 +25,38 @@
     background-color: yellow;
 }
 
+#bottom-bar button {
+
+}
+
 #chart {
     height: 75%;
     width: 100%;
 }
 
-button.chit {
+#dice {
+    position: absolute;
+    width: 100%;
+    height: 25%;
+}
 
+#chits {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    height: 25%;
+}
+
+.chit-row {
+    margin: 5px 0;
+    display: inline-block;
+    width: 100%;
+}
+
+.chit {
+    margin: 0 5px;
+}
+
+.hidden {
+    display: none;
 }
