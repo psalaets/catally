@@ -1,5 +1,5 @@
 {
-  "name": "ss15-catally",
+  "name": "catally",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/staticshowdown/ss15-catally.git"
+    "url": "https://github.com/psalaets/catally.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/staticshowdown/ss15-catally/issues"
+    "url": "https://github.com/psalaets/catally/issues"
   },
-  "homepage": "https://github.com/staticshowdown/ss15-catally",
+  "homepage": "https://github.com/psalaets/catally",
   "devDependencies": {
     "browser-sync": "1.9.1",
     "browserify": "8.1.1",
