@@ -13,6 +13,14 @@ var useref      = require('gulp-useref');
 var filter      = require('gulp-filter');
 var filelog     = require('gulp-filelog');
 
+gulp.task('gh-pages', ['build'], function() {
+  console.log('Copying files to project root:')
+
+  return gulp.src('build/**/*')
+    .pipe(gulp.dest('.'))
+    .pipe(filelog);
+});
+
 gulp.task('watch', ['watchify'], function(cb) {
   browserSync({
     server: {
@@ -93,9 +101,10 @@ gulp.task('default', function() {
   console.log();
   console.log('Tasks:');
   console.log();
-  console.log('  watch - Serve app locally with auto-reload');
-  console.log('  build - Generate deployable app in build/');
-  console.log('  clean - Delete generated files');
+  console.log('  watch    - Serve app locally with auto-reload');
+  console.log('  build    - Generate deployable app in build/');
+  console.log('  gh-pages - Move files in build/ to project root');
+  console.log('  clean    - Delete generated files');
   console.log();
 });
 
