@@ -18,7 +18,7 @@ gulp.task('gh-pages', ['build'], function() {
 
   return gulp.src('build/**/*')
     .pipe(gulp.dest('.'))
-    .pipe(filelog);
+    .pipe(filelog());
 });
 
 gulp.task('watch', ['watchify'], function(cb) {
