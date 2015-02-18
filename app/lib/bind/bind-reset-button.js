@@ -1,4 +1,4 @@
-var counter = require('./counter');
+var counter = require('../counter');
 
 module.exports = bindResetButton;
 

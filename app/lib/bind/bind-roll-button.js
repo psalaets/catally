@@ -1,4 +1,4 @@
-var dice = require('./vm/dice');
+var dice = require('../vm/dice');
 
 module.exports = bindRollButton;
 

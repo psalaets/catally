@@ -1,4 +1,4 @@
-var swap = require('./effects/swap');
+var swap = require('../effects/swap');
 
 module.exports = bindToggleButtons;
 
