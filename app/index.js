@@ -1,5 +1,8 @@
 require('./lib/init-fastclick');
+
 require('./lib/vm/chits').bind('.chit');
+require('./lib/vm/dice').bind('roll-result');
+
 require('./lib/bind-roll-button');
 require('./lib/bind-toggle-buttons');
 require('./lib/bind-reset-button');

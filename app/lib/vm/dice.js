@@ -1,9 +1,16 @@
-var counter = require('./counter');
-var roll = require('./dice-roll');
+var counter = require('../counter');
+var roll = require('../dice-roll');
 
-module.exports = diceTumble;
+module.exports = {
+  bind: bind,
+  roll: diceTumble
+};
 
-var rollResult = document.getElementById('roll-result');
+var rollResultElement;
+
+function bind(id) {
+  rollResultElement = document.getElementById(id);
+}
 
 function diceTumble() {
   tumble(roll(), 1);
@@ -15,13 +22,13 @@ function diceTumble() {
 
 function endUpOn(result, delay) {
   setTimeout(function() {
-    rollResult.textContent = result.roll;
+    rollResultElement.textContent = result.roll;
     counter.increment(result.roll);
   }, delay);
 }
 
 function tumble(result, delay) {
   setTimeout(function() {
-    rollResult.textContent = result.roll;
+    rollResultElement.textContent = result.roll;
   }, delay);
 }

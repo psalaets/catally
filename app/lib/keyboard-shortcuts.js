@@ -1,8 +1,8 @@
 var counter = require('./counter');
-var diceTumble = require('./dice-tumble');
 var wobble = require('./wobble');
 
 var chits = require('./vm/chits');
+var dice = require('./vm/dice');
 
 // KeyboardEvent#keyCode -> roll
 var rollsByKeyCode = {
@@ -37,6 +37,8 @@ window.addEventListener('keydown', function(event) {
 
   // equivalent to rolling dice
   if (event.keyCode == 32) { // spacebar
-    diceTumble();
+    event.preventDefault();
+
+    dice.roll();
   }
 });
