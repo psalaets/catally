@@ -1,6 +1,3 @@
-var counter = require('./counter');
-var wobble = require('./wobble');
-
 var chits = require('./vm/chits');
 var dice = require('./vm/dice');
 
