@@ -1,4 +1,4 @@
-var wobble = require('../wobble');
+var wobble = require('../effects/wobble');
 var counter = require('../counter');
 var forEach = Array.prototype.forEach;
 
