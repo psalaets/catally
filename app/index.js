@@ -3,9 +3,9 @@ require('./lib/init-fastclick');
 require('./lib/vm/chits').bind('.chit');
 require('./lib/vm/dice').bind('roll-result');
 
-require('./lib/buttons/bind-roll-button')('roll-button');
-require('./lib/buttons/bind-toggle-buttons')('#bottom-bar .toolbar-button.toggle');
-require('./lib/buttons/bind-reset-button')('reset-button');
+require('./lib/buttons/roll-button')('roll-button');
+require('./lib/buttons/toggle-buttons')('#bottom-bar .toolbar-button.toggle');
+require('./lib/buttons/reset-button')('reset-button');
 
 require('./lib/keyboard-shortcuts');
 
