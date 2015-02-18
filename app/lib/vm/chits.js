@@ -7,31 +7,34 @@ module.exports = {
   bind: bind
 };
 
-// selects chit elements
-var chitSelector;
-
-function getChitSelector() {
-  if (chitSelector) return chitSelector;
-  throw new Error('chits are not bound, call chits.bind(<selector>)');
-}
+// Array of chit elements
+var chitElements;
 
 function bind(selector) {
-  chitSelector = selector;
-  var chitElements = document.querySelectorAll(getChitSelector());
-
-  if (chitElements.length == 0) {
-    throw new Error('No elements selected by ' + getChitSelector());
+  if (chitElements) {
+    throw new Error('chits are already bound');
   }
 
-  forEach.call(chitElements, function(chitElement) {
+  chitElements = document.querySelectorAll(selector);
+  // convert to array for ease of use
+  chitElements = Array.prototype.slice.call(chitElements);
+
+  if (chitElements.length == 0) {
+    throw new Error('No elements selected by ' + selector);
+  }
+
+  chitElements.forEach(function(chitElement) {
     chitElement.addEventListener('click', chitClicked);
   });
 }
 
 // assumes "this" is an element
 function chitClicked() {
-  var number = parseInt(this.dataset.number, 10);
-  press(number);
+  press(chitNumberOf(this));
+}
+
+function chitNumberOf(chitElement) {
+  return parseInt(chitElement.dataset.number, 10);
 }
 
 function press(number) {
@@ -40,11 +43,11 @@ function press(number) {
 }
 
 function wobbleChitsByNumber(number) {
-  var chitElements = document.querySelectorAll(getChitSelector() + "[data-number='" + number +"']");
-
-  // wobble all chits returned because there are hidden ones
+  // wobble all chits with the number because there are hidden ones
   // and we don't bother to check which is which
-  Array.prototype.forEach.call(chitElements, function(chitElement) {
-    wobble(chitElement);
+  chitElements.forEach(function(chitElement) {
+    if (chitNumberOf(chitElement) == number) {
+      wobble(chitElement);
+    }
   });
 }
