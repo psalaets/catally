@@ -1,4 +1,8 @@
 var localforage = require('localforage');
+localforage.config({
+  name: 'Catally',
+  storeName: 'catally_data'
+});
 
 var key = 'diceRolls';
 
