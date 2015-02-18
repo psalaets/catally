@@ -4,9 +4,9 @@ module.exports = bindToggleButtons;
 
 function bindToggleButtons(selector) {
   var toggleButtons = document.querySelectorAll(selector);
-  var forEach = Array.prototype.forEach;
+  toggleButtons = Array.prototype.slice.call(toggleButtons);
 
-  forEach.call(toggleButtons, function(button) {
+  toggleButtons.forEach(function(button) {
     button.addEventListener('click', function() {
       var showId = button.dataset.show;
       var hideId = button.dataset.hide;
@@ -24,10 +24,10 @@ function bindToggleButtons(selector) {
       }
     });
   });
+}
 
-  function unpressAll(buttons) {
-    forEach.call(buttons, function(button) {
-      button.classList.remove('pressed');
-    });
-  }
+function unpressAll(buttons) {
+  buttons.forEach(function(button) {
+    button.classList.remove('pressed');
+  });
 }
