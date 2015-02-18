@@ -1,5 +1,5 @@
 var counter = require('../counter');
-var roll = require('../dice-roll');
+var roll = require('../random-roll');
 
 module.exports = {
   bind: bind,
