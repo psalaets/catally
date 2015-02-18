@@ -13,6 +13,8 @@ var debounce = require('debounce');
 var counter = require('./lib/counter');
 var chart = require('./lib/chart');
 
+// Chart reacts to viewport changes
+
 var resizeChart = debounce(function() {
   chart.resize('#chart');
 }, 100);
@@ -20,9 +22,13 @@ var resizeChart = debounce(function() {
 window.addEventListener('resize', resizeChart);
 window.addEventListener('orientationchange', resizeChart);
 
+// init chart
+
 counter.chartData.then(function(data) {
   chart.init('#chart', data);
 });
+
+// Chart reacts to data changes
 
 counter.on('change', function() {
   counter.chartData.then(function(data) {
