@@ -1,29 +1,33 @@
 var swap = require('./swap-chits-and-dice');
 
-var toggleButtons = document.querySelectorAll('#bottom-bar .toolbar-button.toggle');
-var forEach = Array.prototype.forEach;
+module.exports = bindToggleButtons;
 
-forEach.call(toggleButtons, function(button) {
-  button.addEventListener('click', function() {
-    var showId = button.dataset.show;
-    var hideId = button.dataset.hide;
+function bindToggleButtons(selector) {
+  var toggleButtons = document.querySelectorAll(selector);
+  toggleButtons = Array.prototype.slice.call(toggleButtons);
 
-    if (!button.classList.contains('pressed')) {
-      // show chits or dice
-      var showThis = document.getElementById(showId);
-      var hideThis = document.getElementById(hideId);
+  toggleButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+      var showId = button.dataset.show;
+      var hideId = button.dataset.hide;
 
-      swap(hideThis, showThis);
+      if (!button.classList.contains('pressed')) {
+        // show chits or dice
+        var showThis = document.getElementById(showId);
+        var hideThis = document.getElementById(hideId);
 
-      // make button look pressed
-      unpressAll(toggleButtons);
-      button.classList.add('pressed');
-    }
+        swap(hideThis, showThis);
+
+        // make button look pressed
+        unpressAll(toggleButtons);
+        button.classList.add('pressed');
+      }
+    });
   });
-});
+}
 
 function unpressAll(buttons) {
-  forEach.call(buttons, function(button) {
+  buttons.forEach(function(button) {
     button.classList.remove('pressed');
   });
 }

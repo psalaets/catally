@@ -1,6 +1,5 @@
-var counter = require('./counter');
-var diceTumble = require('./dice-tumble');
-var wobble = require('./wobble');
+var chits = require('./vm/chits');
+var dice = require('./vm/dice');
 
 // KeyboardEvent#keyCode -> roll
 var rollsByKeyCode = {
@@ -30,21 +29,13 @@ window.addEventListener('keydown', function(event) {
   if (event.keyCode in rollsByKeyCode) {
     event.preventDefault();
 
-    counter.increment(rollsByKeyCode[event.keyCode]);
-    wobbleChitByNumber(rollsByKeyCode[event.keyCode]);
+    chits.press(rollsByKeyCode[event.keyCode]);
   }
 
   // equivalent to rolling dice
   if (event.keyCode == 32) { // spacebar
-    diceTumble();
+    event.preventDefault();
+
+    dice.roll();
   }
 });
-
-function wobbleChitByNumber(number) {
-  var chits = document.querySelectorAll(".chit[data-number='" + number +"']");
-
-  // wobble all chits returned because there are hidden ones and we don't bother to check
-  Array.prototype.forEach.call(chits, function(chit) {
-    wobble(chit);
-  });
-}
