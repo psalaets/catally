@@ -22,7 +22,7 @@ var resizeChart = debounce(function() {
 window.addEventListener('resize', resizeChart);
 window.addEventListener('orientationchange', resizeChart);
 
-// init chart
+// init chart with data
 
 counter.chartData.then(function(data) {
   chart.init('#chart', data);
