@@ -12,6 +12,7 @@ var minifyCss   = require('gulp-minify-css');
 var useref      = require('gulp-useref');
 var filter      = require('gulp-filter');
 var filelog     = require('gulp-filelog');
+var autoPrefixer = require('gulp-autoprefixer');
 
 gulp.task('gh-pages', ['build'], function() {
   console.log('Copying files to project root:')
@@ -92,6 +93,9 @@ gulp.task('build-styles', ['clean'], function() {
       searchPath: ['app', '.']
     }))
     .pipe(filter('*.css'))
+    .pipe(autoPrefixer({
+      browsers: ['> 5%']
+    }))
     .pipe(minifyCss())
     .pipe(rev())
     .pipe(gulp.dest('build/styles'));
