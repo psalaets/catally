@@ -14,9 +14,7 @@ body {
 }
 
 #main {
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: 0;
+    flex: 1 1 0;
 
     margin: 3em 0;
     background-color: #fffff0;
