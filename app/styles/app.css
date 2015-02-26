@@ -16,7 +16,7 @@ body {
 #main {
     flex: 1 1 0;
 
-    margin: 3em 0;
+    padding: 3em 0;
     background-color: #fffff0;
 }
 
@@ -27,7 +27,6 @@ body {
     vertical-align: middle;
     text-align: center;
     line-height: 3em;
-    box-sizing: border-box;
     border-bottom: 1px solid #222;
 }
 
@@ -44,7 +43,6 @@ body {
     background-color: #ab3126;
     padding: 5px 5px;
 
-    box-sizing: border-box;
     border-top: 1px solid #222;
 }
 
