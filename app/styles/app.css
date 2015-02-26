@@ -1,7 +1,21 @@
 @import url(http://fonts.googleapis.com/css?family=Crimson+Text:600);
 
+.flex-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#main {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+
+    margin: 3em 0;
+    background-color: #fffff0;
+}
+
 body {
-    position: relative;
     max-width: 1200px;
     margin: 0 auto;
     height: 100vh;
@@ -9,10 +23,6 @@ body {
 }
 
 #top-bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
     height: 3em;
 
     background-color: #ab3126;
@@ -31,22 +41,7 @@ body {
     margin: 0 0;
 }
 
-#main {
-    margin: 3em 0;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    position: absolute;
-    background-color: #fffff0;
-
-}
-
 #bottom-bar {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
     height: 3em;
     background-color: #ab3126;
     padding: 5px 5px;
@@ -80,7 +75,6 @@ body {
 }
 
 #dice {
-    position: absolute;
     width: 100%;
     height: 25%;
     text-align: center;
@@ -108,7 +102,6 @@ body {
 }
 
 #chits {
-    position: absolute;
     text-align: center;
     width: 100%;
     height: 25%;
