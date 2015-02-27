@@ -25,6 +25,11 @@ window.addEventListener('keydown', function(event) {
   console.log('keydown, event.keyCode: ' + event.keyCode);
   */
 
+  // ignore if shift, alt, ctrl or cmd are pressed
+  if (event.shiftKey || event.altKey || event.ctrlKey || event.metaKey) {
+    return;
+  }
+
   // equivalent to clicking a chit
   if (event.keyCode in rollsByKeyCode) {
     event.preventDefault();
