@@ -38,7 +38,7 @@ function resize() {
     .call(xAxis);
 
   svg.attr("width", width + margin.left + margin.right)
-    .attr('height', height + margin.top + margin.bottom);
+    .attr('height', '100%');
 
   updateChart(lastData);
 }
