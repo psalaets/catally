@@ -116,16 +116,41 @@ body {
     width: 100%;
 
     flex: 1 1 0px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#chits.hidden {
+    display: none;
 }
 
 .chit-row {
     margin: 5px 0;
-    display: inline-block;
-    width: 100%;
 }
 
 .chit-row.wide {
     display: none;
+}
+
+.chit {
+    font-family: Garamond, serif;
+    margin: 0 5px;
+
+    width: 38px;
+    height: 38px;
+    border-radius: 19px;
+    border: 0px;
+
+    text-align: center;
+    background-color: #ffe5b4;
+    overflow: hidden;
+}
+
+.chit.likely {
+    color: #f00;
 }
 
 @media (min-width: 479px) {
@@ -221,24 +246,6 @@ body {
         justify-content: space-around;
         align-items: center;
     }
-}
-
-.chit {
-    font-family: Garamond, serif;
-    margin: 0 5px;
-
-    width: 38px;
-    height: 38px;
-    border-radius: 19px;
-    border: 0px;
-
-    text-align: center;
-    background-color: #ffe5b4;
-    overflow: hidden;
-}
-
-.chit.likely {
-    color: #f00;
 }
 
 .hidden {
