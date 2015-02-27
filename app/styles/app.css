@@ -165,7 +165,7 @@ body {
 
 @media (min-width: 600px) {
     .chit-row.wide .chit {
-        margin: 0 5px;
+        margin: 0 2px;
         width: 42px;
         height: 42px;
         border-radius: 21px;
