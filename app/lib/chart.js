@@ -6,8 +6,6 @@ var lastData;
 module.exports = {
   init: function(selector, data) {
     createChart(selector, data);
-    // hack: prevent chart render issue when changing orientation for the first time
-    resize();
     lastData = data;
   },
   update: function(data) {
