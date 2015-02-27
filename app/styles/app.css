@@ -78,8 +78,8 @@ body {
     flex: 1 1 0px;
 
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
 
     text-align: center;
@@ -211,6 +211,14 @@ body {
 
     .chit-row.crunched {
         display: none;
+    }
+}
+
+@media (min-height: 479px) {
+    #dice {
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
     }
 }
 
