@@ -1,17 +1,18 @@
-var gulp        = require('gulp');
-var browserify  = require('browserify');
-var watchify    = require('watchify');
-var source      = require('vinyl-source-stream');
-var del         = require('del');
-var browserSync = require('browser-sync');
+var gulp         = require('gulp');
+var browserify   = require('browserify');
+var watchify     = require('watchify');
+var source       = require('vinyl-source-stream');
+var del          = require('del');
+var browserSync  = require('browser-sync');
 
-var uglify      = require('gulp-uglify');
-var rev         = require('gulp-rev');
-var inject      = require('gulp-inject');
-var minifyCss   = require('gulp-minify-css');
-var useref      = require('gulp-useref');
-var filter      = require('gulp-filter');
-var filelog     = require('gulp-filelog');
+var uglify       = require('gulp-uglify');
+var rev          = require('gulp-rev');
+var inject       = require('gulp-inject');
+var minifyCss    = require('gulp-minify-css');
+var useref       = require('gulp-useref');
+var filter       = require('gulp-filter');
+var filelog      = require('gulp-filelog');
+var autoPrefixer = require('gulp-autoprefixer');
 
 gulp.task('gh-pages', ['build'], function() {
   console.log('Copying files to project root:')
@@ -92,6 +93,9 @@ gulp.task('build-styles', ['clean'], function() {
       searchPath: ['app', '.']
     }))
     .pipe(filter('*.css'))
+    .pipe(autoPrefixer({
+      browsers: ['> 5%']
+    }))
     .pipe(minifyCss())
     .pipe(rev())
     .pipe(gulp.dest('build/styles'));

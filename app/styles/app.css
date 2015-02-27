@@ -1,25 +1,37 @@
 @import url(http://fonts.googleapis.com/css?family=Crimson+Text:600);
 
+html, body {
+    height: 100%;
+}
+
 body {
-    position: relative;
-    max-width: 1200px;
     margin: 0 auto;
-    height: 100vh;
+    max-width: 1200px;
     background: #fffff0;
 }
 
+.flex-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#main {
+    flex: 1 1 0px;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: #fffff0;
+}
+
 #top-bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
     height: 3em;
 
     background-color: #ab3126;
     vertical-align: middle;
     text-align: center;
     line-height: 3em;
-    box-sizing: border-box;
     border-bottom: 1px solid #222;
 }
 
@@ -31,27 +43,11 @@ body {
     margin: 0 0;
 }
 
-#main {
-    margin: 3em 0;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    position: absolute;
-    background-color: #fffff0;
-
-}
-
 #bottom-bar {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
     height: 3em;
     background-color: #ab3126;
     padding: 5px 5px;
 
-    box-sizing: border-box;
     border-top: 1px solid #222;
 }
 
@@ -75,154 +71,64 @@ body {
 }
 
 #chart {
-    height: 75%;
-    width: 100%;
+    flex: 2 1 0px;
 }
 
 #dice {
-    position: absolute;
-    width: 100%;
-    height: 25%;
+    flex: 1 1 0px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
     text-align: center;
     padding: 0 0 0 0;
     line-height: 1.5;
+}
+
+#dice.hidden, #chits.hidden {
+    display: none;
 }
 
 #roll-button {
     padding: 8px 50px;
     background: #f4d023;
     color: #000;
-    font-size: 28px;
+    font-size: 2em;
     font-family: 'Crimson Text', serif;
-    margin: 0 5px;
+    margin: 0 20px;
     border-radius: 7px;
     cursor: pointer;
 
     /* prevent text select on fake button */
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -o-user-select: none;
     user-select: none;
 }
 
 #roll-result {
     font-family: 'Crimson Text', serif;
-    font-size: 28px;
+    font-size: 2.5em;
+    margin: 0 20px;
 }
 
 #chits {
-    position: absolute;
     text-align: center;
     width: 100%;
-    height: 25%;
+
+    flex: 1 1 0px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .chit-row {
     margin: 5px 0;
-    display: inline-block;
-    width: 100%;
 }
 
 .chit-row.wide {
     display: none;
-}
-
-@media (min-width: 479px) {
-    .chit-row.wide {
-        display: block;
-    }
-
-    .chit-row.wide .chit {
-        margin: 0 0px;
-    }
-
-    .chit-row.crunched {
-        display: none;
-    }
-}
-
-@media (min-width: 600px) {
-    .chit-row.wide {
-        display: block;
-    }
-
-    .chit-row.wide .chit {
-        margin: 0 5px;
-        width: 42px;
-        height: 42px;
-        border-radius: 21px;
-        font-size: 16px;
-        margin: 0 2px;
-    }
-
-    .chit-row.crunched {
-        display: none;
-    }
-}
-
-@media (min-width: 700px) {
-    .chit-row.wide {
-        display: block;
-    }
-
-    .chit-row.wide .chit {
-        margin: 0 5px;
-        width: 48px;
-        height: 48px;
-        border-radius: 24px;
-        font-size: 18px;
-    }
-
-    .chit-row.crunched {
-        display: none;
-    }
-}
-
-@media (min-width: 900px) {
-    .chit-row.wide {
-        display: block;
-    }
-
-    .chit-row.wide .chit {
-        width: 64px;
-        height: 64px;
-        border-radius: 32px;
-        font-size: 24px;
-        margin: 0 5px;
-    }
-
-    .chit-row.crunched {
-        display: none;
-    }
-}
-
-@media (min-width: 1100px) {
-    .chit-row.wide {
-        display: block;
-    }
-
-    .chit-row.wide .chit {
-        width: 80px;
-        height: 80px;
-        border-radius: 40px;
-        font-size: 32px;
-        margin: 0 5px;
-    }
-
-    .chit-row.crunched {
-        display: none;
-    }
-}
-
-#roll-button-wrapper {
-    display: inline-block;
-}
-
-@media (min-height: 479px) {
-    #roll-button-wrapper {
-        display: block;
-    }
 }
 
 .chit {
@@ -243,8 +149,66 @@ body {
     color: #f00;
 }
 
-.hidden {
-    display: none;
+@media (min-width: 479px) {
+    .chit-row.wide {
+        display: block;
+    }
+
+    .chit-row.wide .chit {
+        margin: 0 0px;
+    }
+
+    .chit-row.crunched {
+        display: none;
+    }
+}
+
+@media (min-width: 600px) {
+    .chit-row.wide .chit {
+        margin: 0 2px;
+        width: 42px;
+        height: 42px;
+        border-radius: 21px;
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 700px) {
+    .chit-row.wide .chit {
+        margin: 0 5px;
+        width: 48px;
+        height: 48px;
+        border-radius: 24px;
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 900px) {
+    .chit-row.wide .chit {
+        width: 64px;
+        height: 64px;
+        border-radius: 32px;
+        font-size: 24px;
+        margin: 0 5px;
+    }
+}
+
+@media (min-width: 1100px) {
+    .chit-row.wide .chit {
+        width: 80px;
+        height: 80px;
+        border-radius: 40px;
+        font-size: 32px;
+        margin: 0 5px;
+    }
+}
+
+@media (min-height: 479px) {
+    #dice {
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
 }
 
 rect.bar {

@@ -6,6 +6,8 @@ var lastData;
 module.exports = {
   init: function(selector, data) {
     createChart(selector, data);
+    // hack: prevent chart render issue when changing orientation for the first time
+    resize();
     lastData = data;
   },
   update: function(data) {
@@ -20,7 +22,7 @@ module.exports = {
 
 // based off of http://bl.ocks.org/mbostock/3885304
 var margin = {top: 30, right: 20, bottom: 30, left: 20},
-    xScale, yScale, xAxis, chart, svg;
+    width, height, xScale, yScale, xAxis, chart, svg;
 
 function setSize(containerSelector) {
   width = parseInt(d3.select(containerSelector).style('width'), 10) - margin.left - margin.right;
@@ -38,7 +40,7 @@ function resize() {
     .call(xAxis);
 
   svg.attr("width", width + margin.left + margin.right)
-    .attr('height', height + margin.top + margin.bottom);
+    .attr('height', '100%');
 
   updateChart(lastData);
 }
