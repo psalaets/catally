@@ -139,9 +139,9 @@ body {
     border-radius: 19px;
     border: 0px;
 
-    padding: 0px;
+    padding: 0;
     text-align: center;
-    margin: 0px auto;
+    margin: 0 0;
 
     background-color: #ffe5b4;
 }
@@ -153,10 +153,6 @@ body {
 @media (min-width: 479px) {
     .chit-row.wide {
         display: block;
-    }
-
-    .chit-row.wide .chit {
-        margin: 0 0px;
     }
 
     .chit-row.crunched {
@@ -190,7 +186,6 @@ body {
         height: 64px;
         border-radius: 32px;
         font-size: 24px;
-        margin: 0 5px;
     }
 }
 
@@ -200,7 +195,6 @@ body {
         height: 80px;
         border-radius: 40px;
         font-size: 32px;
-        margin: 0 5px;
     }
 }
 
