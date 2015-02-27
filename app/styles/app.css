@@ -19,6 +19,9 @@ body {
 #main {
     flex: 1 1 0px;
 
+    display: flex;
+    flex-direction: column;
+
     background-color: #fffff0;
 }
 
@@ -68,13 +71,12 @@ body {
 }
 
 #chart {
-    height: 75%;
-    width: 100%;
+    flex: 2 1 0px;
 }
 
 #dice {
-    width: 100%;
-    height: 25%;
+    flex: 1 1 0px;
+
     text-align: center;
     padding: 0 0 0 0;
     line-height: 1.5;
@@ -102,7 +104,8 @@ body {
 #chits {
     text-align: center;
     width: 100%;
-    height: 25%;
+
+    flex: 1 1 0px;
 }
 
 .chit-row {
