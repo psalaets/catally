@@ -1,9 +1,12 @@
 @import url(http://fonts.googleapis.com/css?family=Crimson+Text:600);
 
+html, body {
+    height: 100%;
+}
+
 body {
-    max-width: 1200px;
     margin: 0 auto;
-    height: 100vh;
+    max-width: 1200px;
     background: #fffff0;
 }
 
@@ -14,7 +17,7 @@ body {
 }
 
 #main {
-    flex: 1 1 0;
+    flex: 1 1 0px;
 
     padding: 3em 0;
     background-color: #fffff0;
