@@ -87,7 +87,7 @@ body {
     line-height: 1.5;
 }
 
-#dice.hidden {
+#dice.hidden, #chits.hidden {
     display: none;
 }
 
@@ -121,10 +121,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-#chits.hidden {
-    display: none;
 }
 
 .chit-row {
