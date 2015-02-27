@@ -94,7 +94,7 @@ gulp.task('build-styles', ['clean'], function() {
     }))
     .pipe(filter('*.css'))
     .pipe(autoPrefixer({
-      browsers: ['> 5%']
+      browsers: ['> 1%', 'last 2 versions']
     }))
     .pipe(minifyCss())
     .pipe(rev())
