@@ -216,10 +216,6 @@ body {
     }
 }
 
-.hidden {
-    display: none;
-}
-
 rect.bar {
     fill: #ab3126; /* reddish */
     /*fill: #f4d023; /* yellowish */
